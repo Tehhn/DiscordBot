@@ -60,7 +60,7 @@ public class DiscordBot {
             Thread.sleep(500);
             WebElement element1 = driver.findElement(By.cssSelector("[class*='textArea-12jD']"));
             action.sendKeys(element1, ""+ automaticMessage + Keys.ENTER).build().perform();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.navigate().back();
 
 
