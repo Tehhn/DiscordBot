@@ -11,8 +11,10 @@ public class DiscordBot {
 
     public void invokeBrowser() {
         //Open the browser and Login to Discord Webpage application.
+        String driverPath;
+        driverPath = "C:\\Users\\Tehhn\\bin\\chromedriver.exe";
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Tehhn\\bin\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", driverPath);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
