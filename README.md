@@ -40,3 +40,7 @@ Setting the sofware up:
 -String driverPath must be changed to navigate to webdriver on your local machine
 
 -For this project,chrome webdriver for Chrome version 85.xx was used.
+
+
+You can also see the short youtube video showing starting the bot up and it working!
+https://youtu.be/4OC4olSCLjY
