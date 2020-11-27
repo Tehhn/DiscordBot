@@ -42,8 +42,7 @@ public class DiscordBot {
         /*this method to check if element exists is recommended by official documentation,
         I'd still think there is a smarter solution */
 
-        if (driver.findElements(By.xpath("/html/body/div/div[2]/div/div[2]/div/div/nav/div[2]/div[2]/div/div[2]/div/div/div")).size() > 0) {
-            //System.out.println("True");
+        if (driver.findElements(By.xpath("//div [@class='wrapper-1BJsBx'][@role ='listitem']")).size() > 0) {
             return true;
         } else {
             //System.out.println("False");
@@ -55,13 +54,17 @@ public class DiscordBot {
 
     public void AutomaticAnswer(String automaticMessage) {
         try {
-            Thread.sleep(500);
-            Actions action = new Actions(driver);
-            WebElement element = driver.findElement(By.xpath("/html/body/div/div[2]/div/div[2]/div/div/nav/div[2]/div[2]/div/div[2]/div/div/div"));
-            action.click(element).build().perform();
-            Thread.sleep(500);
-            WebElement element1 = driver.findElement(By.cssSelector("[class*='textArea-12jD']"));
-            action.sendKeys(element1, ""+ automaticMessage + Keys.ENTER).build().perform();
+            Thread.sleep(1000);
+            this.driver.findElement(By.xpath("//div [@class='wrapper-1BJsBx'][@role ='listitem']")).click();
+
+            Thread.sleep(1000);
+
+            /*WebElement element1 = driver.findElement(By.cssSelector("[class*='textArea-12jD']"));
+            action.sendKeys(element1, ""+ automaticMessage + Keys.ENTER).build().perform();*/
+
+            WebElement TextBox = this.driver.findElement(By.xpath("//div [@role='textbox'][@class = 'markup-2BOw-j slateTextArea-1Mkdgw fontSize16Padding-3Wk7zP']"));
+            TextBox.sendKeys(""+ automaticMessage + Keys.ENTER);
+
             Thread.sleep(2000);
             driver.navigate().back();
 
@@ -93,7 +96,7 @@ public class DiscordBot {
         boolean tempBool = true;
         while(tempBool) {
 
-            if (bot.checkIfAnyMessages() == true) {
+            if (bot.checkIfAnyMessages()) {
 
                 bot.AutomaticAnswer(upm[2]);
             } else {
@@ -101,7 +104,6 @@ public class DiscordBot {
                     System.out.println("No new messages, sleeping for a minute");
                     Thread.sleep(60000);
                     System.out.println("Actively looking for messages again");
-                    tempBool = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
